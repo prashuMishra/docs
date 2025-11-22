@@ -1,0 +1,26 @@
+---
+config:
+  theme: neo-dark
+---
+sequenceDiagram
+    participant Frontend
+    participant APIM
+    participant LYRA
+    participant IDP
+
+    Frontend->>IDP: Redirect to SSO Login (OpenID Connect)
+    IDP->>Frontend: Redirect back with authorization_code
+
+    Frontend->>APIM: POST /lyra/v1/auth/sso/exchange\n{ authorization_code }
+    APIM->>LYRA: Forward request (validated)
+
+    LYRA->>IDP: Exchange authorization_code for access_token + id_token
+    IDP->>LYRA: Return tokens
+
+    LYRA->>APIM: Return lyra_access_token
+    APIM->>Frontend: Return lyra_access_token
+
+    Frontend->>APIM: GET /lyra/v1/flights/schedule\nAuthorization: Bearer lyra_access_token
+    APIM->>LYRA: Validate + Forward request
+    LYRA->>APIM: Return flight schedule
+    APIM->>Frontend: Return response

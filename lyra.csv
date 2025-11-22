@@ -1,0 +1,39 @@
+AIRLINES OPS CONTAINER			
+Public Route	Method	Description	GRPC
+FLIGHT ROUTES			
+/flights/schedule	GET	Get logged-in crew member’s upcoming flights	
+/flights/{flightId}	GET	Flight details	
+			
+PASSENGER ROUTES			
+/flights/{flightId}/passengers	GET	List of passengers	
+/flights/{flightId}/passengers/{uci}	GET	Passenger details	
+/flights/{flightId}/passengers/{uci}/remarks	POST	Add/update passenger remarks	
+/flights/{flightId}/lopa	GET	Lopa 360 view	
+			
+CREW			
+/crew	GET	Logged-in staff profile	
+/flights/{flightId}/crew	GET	Crew list assigned to the flight	
+/crew/{staffNum}	GET	Crew profile by staff number	
+			
+			
+LYRA CONTAINER			
+Public Route	Method	Description	
+/lyra/v1/auth/token	POST	Exchange SSO token ? LYRA access token	
+/lyra/v1/auth/refresh	POST	Refresh access token	
+/lyra/v1/auth/logout	POST	Logout	
+lyra/v1/flights/schedule	GET	Get logged-in crew member’s upcoming flights	/flights/schedule
+/lyra/v1/flights/{flightId}	GET	Flight details	/flights/{flightId}
+/lyra/v1/flights/{flightId}/passengers	GET	List of passengers	/flights/{flightId}/passengers
+/lyra/v1/flights/{flightId}/passengers/{uci}	GET	Passenger details	/flights/{flightId}/passengers/{uci}
+/lyra/v1/flights/{flightId}/passengers/{uci}/remarks	POST	Add/update passenger remarks	/flights/{flightId}/passengers/{uci}/remarks
+/lyra/v1/flights/{flightId}/lopa	GET	Lopa 360 view	/flights/{flightId}/lopa
+/lyra/v1/flights/{flightId}/crew	GET	Crew list assigned to the flight	/flights/{flightId}/crew
+/lyra/v1/crew	GET	Logged-in staff profile	/crew
+/lyra/v1/crew/{staffNum}	GET	Crew profile by staff number	/crew/{staffNum}
+/lyra/v1/crew/attendance	POST	Mark attendance (IN/OUT)	
+/lyra/v1/crew/attendance	GET	Fetch attendance history	
+/lyra/v1/crew/{staffNum}/attendance	GET	Admin view attendance	
+/lyra/v1/config/activities	GET	Get flight-level question bank	
+/lyra/v1/config/activities	POST	Add/update activity questionnaire	
+/lyra/v1/config/crew-positions	GET	List of crew positions	
+/lyra/v1/config/crew-positions	POST	Create/update crew positions	
